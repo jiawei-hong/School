@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>資處公略</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -17,7 +17,29 @@
          color:white;
          text-decoration:none;
        }
+
+       a{
+         cursor:pointer;
+       }
     </style>
+    <script>
+      $(function(){
+        $('[name=img]').change(function(){
+          $('#FileText').text(this.value.split('\\')[2]);
+        })
+        
+        $('#Submit').click(function(){
+          if($('#FileText').text().search('png|jpeg|jpg') == -1){
+            alert('目前只支援png,jpeg,jpg格式');
+            return false;
+          }else if($('#url').search('youtube.com') == -1){
+            alert('只能輸入Youtube的網址');
+            return false;
+          }
+
+        })
+      })
+    </script>
     </head>
 <body>
     <nav class="navbar navbar-dark bg-dark">
@@ -38,24 +60,23 @@
           </a>        
         </li>
         <li class="nav-item">
-          <a href="./" class="nav-link">
+          <a data-toggle="modal" data-target="#exampleModalCenter">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 8 8">
               <path d="M0 0v1h8v-1h-8zm4 2l-3 3h2v3h2v-3h2l-3-3z" />
             </svg>
             <strong>
-              上傳圖片
+              上傳圖片&網址
             </strong>
-          </a>        
+          </a>    
         </li>
       </ul>
     </div>
     </nav>
     <div class="jumbotron">
-      <h1 class="display-4">歡迎來到網頁</h1>
-      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <h1 class="display-4">Welcome Come Website</h1>
+      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> 
       <hr class="my-4">
       <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-      <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
     </div>
     <div class="container">
       <div class="card-deck">
@@ -74,6 +95,35 @@
       </div>
     </div>
   </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">上傳圖片&網址</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="./Process.php" method="post" enctype="multipart/form-data">
+            <div class="modal-body">
+              <div class="custom-file">
+                <input type="file" name="img" id="customFile">
+                <label class="custom-file-label" id="FileText" for="customFile">選擇圖片</label>
+              </div>
+              <hr>
+              <div class="form-group">
+                  <input type="text" id="url" name="url" class="form-control" placeholder="輸入Youtube的網址">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+              <button type="submit" id="Submit" class="btn btn-primary">上傳</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
 </body>
 </html>
