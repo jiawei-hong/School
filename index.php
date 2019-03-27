@@ -80,20 +80,22 @@
     </div>
     <div class="container">
       <div class="card-deck">
-    <div class="card">
-      <img class="card-img-top" src="./images/letters_inverse.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <?php
+        include_once('link.php');
+        $sql = $db->query('select * from data');
+        while($query = $sql->fetch(PDO::FETCH_ASSOC)){
+      ?>
+      <div class="card">
+        <img class="card-img-top" src="./UserImages/<?php echo $query['d_img']; ?>" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><?php echo explode('.',$query['d_img'])[0]; ?></h5>
+          <p class="card-title">影片簡介：</p>
+          <a href="<?php echo $query['d_link']; ?>" class="btn btn-primary active" role="button" aria-pressed="true">影片連結</a>
+        </div>
       </div>
-    </div>
-    <div class="card">
-      <img class="card-img-top" src="./images/letters_inverse.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-      </div>
-    </div>
+      <?php
+        }
+      ?>
   </div>
     </div>
     <!-- Modal -->
