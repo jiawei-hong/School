@@ -79,24 +79,28 @@
       <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
     </div>
     <div class="container">
-      <div class="card-deck">
       <?php
         include_once('link.php');
         $sql = $db->query('select * from data');
+        $row = $sql->rowCount();
         while($query = $sql->fetch(PDO::FETCH_ASSOC)){
       ?>
-      <div class="card">
-        <img class="card-img-top" src="./UserImages/<?php echo $query['d_img']; ?>" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title"><?php echo explode('.',$query['d_img'])[0]; ?></h5>
-          <p class="card-title">影片簡介：</p>
-          <a href="<?php echo $query['d_link']; ?>" class="btn btn-primary active" role="button" aria-pressed="true">影片連結</a>
+      <p>
+        <div class="card-deck">
+          <div class="card">
+            <img class="card-img-top" src="https://ichef.bbci.co.uk/news/660/cpsprodpb/EF3C/production/_100844216_mediaitem100843403.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title"><?php echo explode('.',$query['d_img'])[0]; ?></h5>
+              <p class="card-title">影片簡介：</p>
+              <a href="<?php echo $query['d_link']; ?>" class="btn btn-primary active" role="button" aria-pressed="true">影片連結</a>
+            </div>
+          </div>
         </div>
-      </div>
+      </p>
       <?php
+          
         }
       ?>
-  </div>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
