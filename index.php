@@ -88,10 +88,9 @@
       <p>
         <div class="card-deck">
           <div class="card">
-            <img class="card-img-top" src="https://ichef.bbci.co.uk/news/660/cpsprodpb/EF3C/production/_100844216_mediaitem100843403.jpg" alt="Card image cap">
+            <img class="card-img-top" src="./UserImages/<?php echo $query['d_img']; ?>" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title"><?php echo explode('.',$query['d_img'])[0]; ?></h5>
-              <p class="card-title">影片簡介：</p>
+              <h5 class="card-title">影片主題：<?php echo explode('.',$query['d_img'])[0]; ?></h5>
               <a href="<?php echo $query['d_link']; ?>" class="btn btn-primary active" role="button" aria-pressed="true">影片連結</a>
             </div>
           </div>
@@ -121,6 +120,13 @@
               <hr>
               <div class="form-group">
                   <input type="text" id="url" name="url" class="form-control" placeholder="輸入Youtube的網址">
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlSelect2">Example multiple select</label>
+                <select name="class" class="form-control">
+                  <option value="資三智">資三智</option>
+                  <option value="資三仁">資三仁</option>
+                </select>
               </div>
             </div>
             <div class="modal-footer">
