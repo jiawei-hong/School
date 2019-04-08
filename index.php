@@ -21,6 +21,10 @@
        a{
          cursor:pointer;
        }
+
+       img{
+         cursor:pointer;
+       }
     </style>
     <script>
       $(function(){
@@ -59,7 +63,7 @@
             </strong>
           </a>        
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a data-toggle="modal" data-target="#exampleModalCenter">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 8 8">
               <path d="M0 0v1h8v-1h-8zm4 2l-3 3h2v3h2v-3h2l-3-3z" />
@@ -68,15 +72,15 @@
               上傳圖片&網址
             </strong>
           </a>    
-        </li>
+        </li> -->
       </ul>
     </div>
     </nav>
-    <div class="jumbotron">
-      <h1 class="display-4">Welcome Come Website</h1>
-      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> 
+    <div class="jumbotron" align="center">
+      <h1 class="display-4">歡迎來到資處公略成果展</h1>
       <hr class="my-4">
-      <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+      <p class="lead" style="margin-left:50px">這裡展放的是資處科多媒體的作品</p> 
+      <!-- <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
     </div>
     <div class="container">
       <?php
@@ -88,10 +92,16 @@
       <p>
         <div class="card-deck">
           <div class="card">
-            <img class="card-img-top" src="./UserImages/<?php echo $query['d_img']; ?>" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">影片主題：<?php echo explode('.',$query['d_img'])[0]; ?></h5>
-              <a href="<?php echo $query['d_link']; ?>" class="btn btn-primary active" role="button" aria-pressed="true">影片連結</a>
+          <a href="<?php echo $query['d_link']; ?>">            <img class="card-img-top" src="<?php if($query['d_class'] == "資三智"){
+              echo './UserImages/wisdom/' . $query['d_img'];
+            }else{
+              echo './UserImages/benevolence/' . $query['d_img'];
+            }  ?>" alt="Card image cap"></a>
+            <div class="card-body" align="center">
+              <h5 class="card-title">製作班級：<?php echo $query['d_class']; ?></h5>
+              <h4 class="card-title">影片名稱：<?php echo explode('.',$query['d_img'])[0]; ?></h4>
+              <h4 class="card-title"><?php echo $query['d_people']; ?></h4>
+              <a href="<?php echo $query['d_link']; ?>" class="btn btn-primary active" width= role="button" aria-pressed="true">影片連結</a>
             </div>
           </div>
         </div>
