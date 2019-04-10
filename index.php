@@ -60,6 +60,13 @@
          width:397px;
          height:186px;
        }
+
+       span{
+         display:flex;
+         justify-content:center;
+         font-family:'標楷體';
+         font-size:30px;
+       }
     </style>
     <!-- <script>
       $(function(){
@@ -139,6 +146,7 @@
       <p>
           <div id="微電影">
           <table>
+          <span>微電影</span>
               <tbody>
             <?php
               $sql = $db->query('select * from data where d_category="微電影"');
@@ -185,7 +193,7 @@
                       }
                     ?>
                     <?php
-                      if($i+1<10){
+                      if($i+2<10){
                     ?>
                     <td>
                       <div class="card-deck">
@@ -216,36 +224,324 @@
               </table>
       </p>
       <p>
-          <div id="直播行銷">
+      <div id="直播行銷">
+          <table>
+          <span>直播行銷</span>
+              <tbody>
             <?php
-              $sql = $db->query('select * from data where d_category="微電影"');
-              echo $sql->rowCount();                         
+              $sql = $db->query('select * from data where d_category="直播行銷"');
+              $query = $sql->fetchAll();
+              for($i=0;$i<$sql->rowCount();$i++){                
             ?>
+                  <tr>
+                    <td>
+                      <div class="card-deck">
+                        <div class="card">
+                        <img class="card-img-top" src="<?php if($query[$i]['d_class'] == "資三智"){
+                            echo './UserImages/wisdom/' . $query[$i]['d_img'];
+                          }else{
+                            echo './UserImages/benevolence/' . $query[$i]['d_img'];
+                          }  ?>" alt="Card image cap">
+                            <div class="card-body" align="center">
+                            <h4 class="card-title">影片名稱：<?php echo explode('.',$query[$i]['d_img'])[0]; ?> <a href="<?php echo $query[$i]['d_link']; ?>" class="btn btn-primary active" width= role="button" aria-pressed="true">影片連結</a></h4>
+                              <h5 class="card-title">班級：<?php echo $query[$i]['d_class']; ?></h5>                
+                              <h4 class="card-title"><?php echo $query[$i]['d_people']; ?></h4>
+                            </div>
+                        </div>
+                      </div>
+                    </td>
+                    <?php
+                      if($i+1<$sql->rowCount()){
+                    ?>
+                    <td>
+                      <div class="card-deck">
+                          <div class="card">
+                          <img class="card-img-top" src="<?php if($query[$i+1]['d_class'] == "資三智"){
+                              echo './UserImages/wisdom/' . $query[$i+1]['d_img'];
+                            }else{
+                              echo './UserImages/benevolence/' . $query[$i+1]['d_img'];
+                            }  ?>" alt="Card image cap">
+                              <div class="card-body" align="center">
+                              <h4 class="card-title">影片名稱：<?php echo explode('.',$query[$i+1]['d_img'])[0]; ?> <a href="<?php echo $query[$i+1]['d_link']; ?>" class="btn btn-primary active" width= role="button" aria-pressed="true">影片連結</a></h4>
+                                <h5 class="card-title">班級：<?php echo $query[$i+1]['d_class']; ?></h5>                
+                                <h4 class="card-title"><?php echo $query[$i+1]['d_people']; ?></h4>
+                              </div>
+                          </div>
+                      </div>
+                    </td>
+                    <?php
+                      }
+                    ?>
+                    <?php
+                      if($i+2<$sql->rowCount()){
+                    ?>
+                    <td>
+                      <div class="card-deck">
+                        <div class="card">
+                        <img class="card-img-top" src="<?php if($query[$i+2]['d_class'] == "資三智"){
+                            echo './UserImages/wisdom/' . $query[$i+2]['d_img'];
+                          }else{
+                            echo './UserImages/benevolence/' . $query[$i+2]['d_img'];
+                          }  ?>" alt="Card image cap">
+                            <div class="card-body" align="center">
+                            <h4 class="card-title">影片名稱：<?php echo explode('.',$query[$i+2]['d_img'])[0]; ?> <a href="<?php echo $query[$i+2]['d_link']; ?>" class="btn btn-primary active" width= role="button" aria-pressed="true">影片連結</a></h4>
+                              <h5 class="card-title">班級：<?php echo $query[$i+2]['d_class']; ?></h5>                
+                              <h4 class="card-title"><?php echo $query[$i+2]['d_people']; ?></h4>
+                            </div>
+                        </div>
+                      </div>
+                    </td>
+                    <?php
+                      }
+                    ?>
+                  </tr>
+                <?php
+                    $i+=2;
+                  }
+                ?>
           </div>
+          </tbody>
+              </table>
       </p>
       <p>
-          <div id="性別平等">
+      <div id="性別平等">
+          <table>
+          <span>性別平等</span>
+              <tbody>
             <?php
-              $sql = $db->query('select * from data where d_category="微電影"');
-              echo $sql->rowCount();                         
+              $sql = $db->query('select * from data where d_category="性別平等"');
+              $query = $sql->fetchAll();
+              for($i=0;$i<$sql->rowCount();$i++){                
             ?>
+                  <tr>
+                    <td>
+                      <div class="card-deck">
+                        <div class="card">
+                        <img class="card-img-top" src="<?php if($query[$i]['d_class'] == "資三智"){
+                            echo './UserImages/wisdom/' . $query[$i]['d_img'];
+                          }else{
+                            echo './UserImages/benevolence/' . $query[$i]['d_img'];
+                          }  ?>" alt="Card image cap">
+                            <div class="card-body" align="center">
+                            <h4 class="card-title">影片名稱：<?php echo explode('.',$query[$i]['d_img'])[0]; ?> <a href="<?php echo $query[$i]['d_link']; ?>" class="btn btn-primary active" width= role="button" aria-pressed="true">影片連結</a></h4>
+                              <h5 class="card-title">班級：<?php echo $query[$i]['d_class']; ?></h5>                
+                              <h4 class="card-title"><?php echo $query[$i]['d_people']; ?></h4>
+                            </div>
+                        </div>
+                      </div>
+                    </td>
+                    <?php
+                      if($i+1<$sql->rowCount()){
+                    ?>
+                    <td>
+                      <div class="card-deck">
+                          <div class="card">
+                          <img class="card-img-top" src="<?php if($query[$i+1]['d_class'] == "資三智"){
+                              echo './UserImages/wisdom/' . $query[$i+1]['d_img'];
+                            }else{
+                              echo './UserImages/benevolence/' . $query[$i+1]['d_img'];
+                            }  ?>" alt="Card image cap">
+                              <div class="card-body" align="center">
+                              <h4 class="card-title">影片名稱：<?php echo explode('.',$query[$i+1]['d_img'])[0]; ?> <a href="<?php echo $query[$i+1]['d_link']; ?>" class="btn btn-primary active" width= role="button" aria-pressed="true">影片連結</a></h4>
+                                <h5 class="card-title">班級：<?php echo $query[$i+1]['d_class']; ?></h5>                
+                                <h4 class="card-title"><?php echo $query[$i+1]['d_people']; ?></h4>
+                              </div>
+                          </div>
+                      </div>
+                    </td>
+                    <?php
+                      }
+                    ?>
+                    <?php
+                      if($i+2<$sql->rowCount()){
+                    ?>
+                    <td>
+                      <div class="card-deck">
+                        <div class="card">
+                        <img class="card-img-top" src="<?php if($query[$i+2]['d_class'] == "資三智"){
+                            echo './UserImages/wisdom/' . $query[$i+2]['d_img'];
+                          }else{
+                            echo './UserImages/benevolence/' . $query[$i+2]['d_img'];
+                          }  ?>" alt="Card image cap">
+                            <div class="card-body" align="center">
+                            <h4 class="card-title">影片名稱：<?php echo explode('.',$query[$i+2]['d_img'])[0]; ?> <a href="<?php echo $query[$i+2]['d_link']; ?>" class="btn btn-primary active" width= role="button" aria-pressed="true">影片連結</a></h4>
+                              <h5 class="card-title">班級：<?php echo $query[$i+2]['d_class']; ?></h5>                
+                              <h4 class="card-title"><?php echo $query[$i+2]['d_people']; ?></h4>
+                            </div>
+                        </div>
+                      </div>
+                    </td>
+                    <?php
+                      }
+                    ?>
+                  </tr>
+                <?php
+                    $i+=2;
+                  }
+                ?>
           </div>
+          </tbody>
+              </table>
       </p>
       <p>
-          <div id="自我介少">
+      <div id="自我介紹">
+          <table>
+          <span>自我介紹</span>
+              <tbody>
             <?php
-              $sql = $db->query('select * from data where d_category="微電影"');
-              echo $sql->rowCount();                           
+              $sql = $db->query('select * from data where d_category="自我介紹"');
+              $query = $sql->fetchAll();
+              for($i=0;$i<$sql->rowCount();$i++){                
             ?>
+                  <tr>
+                    <td>
+                      <div class="card-deck">
+                        <div class="card">
+                        <img class="card-img-top" src="<?php if($query[$i]['d_class'] == "資三智"){
+                            echo './UserImages/wisdom/' . $query[$i]['d_img'];
+                          }else{
+                            echo './UserImages/benevolence/' . $query[$i]['d_img'];
+                          }  ?>" alt="Card image cap">
+                            <div class="card-body" align="center">
+                            <h4 class="card-title">影片名稱：<?php echo explode('.',$query[$i]['d_img'])[0]; ?> <a href="<?php echo $query[$i]['d_link']; ?>" class="btn btn-primary active" width= role="button" aria-pressed="true">影片連結</a></h4>
+                              <h5 class="card-title">班級：<?php echo $query[$i]['d_class']; ?></h5>                
+                              <h4 class="card-title"><?php echo $query[$i]['d_people']; ?></h4>
+                            </div>
+                        </div>
+                      </div>
+                    </td>
+                    <?php
+                      if($i+1<$sql->rowCount()){
+                    ?>
+                    <td>
+                      <div class="card-deck">
+                          <div class="card">
+                          <img class="card-img-top" src="<?php if($query[$i+1]['d_class'] == "資三智"){
+                              echo './UserImages/wisdom/' . $query[$i+1]['d_img'];
+                            }else{
+                              echo './UserImages/benevolence/' . $query[$i+1]['d_img'];
+                            }  ?>" alt="Card image cap">
+                              <div class="card-body" align="center">
+                              <h4 class="card-title">影片名稱：<?php echo explode('.',$query[$i+1]['d_img'])[0]; ?> <a href="<?php echo $query[$i+1]['d_link']; ?>" class="btn btn-primary active" width= role="button" aria-pressed="true">影片連結</a></h4>
+                                <h5 class="card-title">班級：<?php echo $query[$i+1]['d_class']; ?></h5>                
+                                <h4 class="card-title"><?php echo $query[$i+1]['d_people']; ?></h4>
+                              </div>
+                          </div>
+                      </div>
+                    </td>
+                    <?php
+                      }
+                    ?>
+                    <?php
+                      if($i+2<$sql->rowCount()){
+                    ?>
+                    <td>
+                      <div class="card-deck">
+                        <div class="card">
+                        <img class="card-img-top" src="<?php if($query[$i+2]['d_class'] == "資三智"){
+                            echo './UserImages/wisdom/' . $query[$i+2]['d_img'];
+                          }else{
+                            echo './UserImages/benevolence/' . $query[$i+2]['d_img'];
+                          }  ?>" alt="Card image cap">
+                            <div class="card-body" align="center">
+                            <h4 class="card-title">影片名稱：<?php echo explode('.',$query[$i+2]['d_img'])[0]; ?> <a href="<?php echo $query[$i+2]['d_link']; ?>" class="btn btn-primary active" width= role="button" aria-pressed="true">影片連結</a></h4>
+                              <h5 class="card-title">班級：<?php echo $query[$i+2]['d_class']; ?></h5>                
+                              <h4 class="card-title"><?php echo $query[$i+2]['d_people']; ?></h4>
+                            </div>
+                        </div>
+                      </div>
+                    </td>
+                    <?php
+                      }
+                    ?>
+                  </tr>
+                <?php
+                    $i+=2;
+                  }
+                ?>
           </div>
+          </tbody>
+              </table>
       </p>
       <p>
-          <div id="高中歲月">
+      <div id="高中歲月">
+          <table>
+          <span>高中歲月</span>
+              <tbody>
             <?php
-              $sql = $db->query('select * from data where d_category="微電影"');
-              echo $sql->rowCount();                           
+              $sql = $db->query('select * from data where d_category="高中歲月"');
+              $query = $sql->fetchAll();
+              for($i=0;$i<$sql->rowCount();$i++){                
             ?>
+                  <tr>
+                    <td>
+                      <div class="card-deck">
+                        <div class="card">
+                        <img class="card-img-top" src="<?php if($query[$i]['d_class'] == "資三智"){
+                            echo './UserImages/wisdom/' . $query[$i]['d_img'];
+                          }else{
+                            echo './UserImages/benevolence/' . $query[$i]['d_img'];
+                          }  ?>" alt="Card image cap">
+                            <div class="card-body" align="center">
+                            <h4 class="card-title">影片名稱：<?php echo explode('.',$query[$i]['d_img'])[0]; ?> <a href="<?php echo $query[$i]['d_link']; ?>" class="btn btn-primary active" width= role="button" aria-pressed="true">影片連結</a></h4>
+                              <h5 class="card-title">班級：<?php echo $query[$i]['d_class']; ?></h5>                
+                              <h4 class="card-title"><?php echo $query[$i]['d_people']; ?></h4>
+                            </div>
+                        </div>
+                      </div>
+                    </td>
+                    <?php
+                      if($i+1<$sql->rowCount()){
+                    ?>
+                    <td>
+                      <div class="card-deck">
+                          <div class="card">
+                          <img class="card-img-top" src="<?php if($query[$i+1]['d_class'] == "資三智"){
+                              echo './UserImages/wisdom/' . $query[$i+1]['d_img'];
+                            }else{
+                              echo './UserImages/benevolence/' . $query[$i+1]['d_img'];
+                            }  ?>" alt="Card image cap">
+                              <div class="card-body" align="center">
+                              <h4 class="card-title">影片名稱：<?php echo explode('.',$query[$i+1]['d_img'])[0]; ?> <a href="<?php echo $query[$i+1]['d_link']; ?>" class="btn btn-primary active" width= role="button" aria-pressed="true">影片連結</a></h4>
+                                <h5 class="card-title">班級：<?php echo $query[$i+1]['d_class']; ?></h5>                
+                                <h4 class="card-title"><?php echo $query[$i+1]['d_people']; ?></h4>
+                              </div>
+                          </div>
+                      </div>
+                    </td>
+                    <?php
+                      }
+                    ?>
+                    <?php
+                      if($i+2<$sql->rowCount()){
+                    ?>
+                    <td>
+                      <div class="card-deck">
+                        <div class="card">
+                        <img class="card-img-top" src="<?php if($query[$i+2]['d_class'] == "資三智"){
+                            echo './UserImages/wisdom/' . $query[$i+2]['d_img'];
+                          }else{
+                            echo './UserImages/benevolence/' . $query[$i+2]['d_img'];
+                          }  ?>" alt="Card image cap">
+                            <div class="card-body" align="center">
+                            <h4 class="card-title">影片名稱：<?php echo explode('.',$query[$i+2]['d_img'])[0]; ?> <a href="<?php echo $query[$i+2]['d_link']; ?>" class="btn btn-primary active" width= role="button" aria-pressed="true">影片連結</a></h4>
+                              <h5 class="card-title">班級：<?php echo $query[$i+2]['d_class']; ?></h5>                
+                              <h4 class="card-title"><?php echo $query[$i+2]['d_people']; ?></h4>
+                            </div>
+                        </div>
+                      </div>
+                    </td>
+                    <?php
+                      }
+                    ?>
+                  </tr>
+                <?php
+                    $i+=2;
+                  }
+                ?>
           </div>
+          </tbody>
+              </table>
       </p>
     </div>
     <!-- Modal -->
