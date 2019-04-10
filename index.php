@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>資處公略</title>
+    <title>資處攻略</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -25,8 +25,43 @@
        img{
          cursor:pointer;
        }
+       
+       .display-4{
+         font-family:'標楷體';
+       }
+
+       .card-title{
+         font-family:'標楷體';
+         font-size:20px;
+       }
+
+       .card-img-top{
+         width:397px;
+         height:280px;;
+       }
+
+       table{
+         margin-left:-30px;
+       }
+
+       #mainDiv{
+        display: flex;
+        justify-content: space-evenly;
+        font-family:'標楷體';
+        font-size:25px;
+       }
+
+       td{
+         width:401px;
+         height:410px;
+       }
+
+       .card-body{
+         width:397px;
+         height:186px;
+       }
     </style>
-    <script>
+    <!-- <script>
       $(function(){
         $('[name=img]').change(function(){
           $('#FileText').text(this.value.split('\\')[2]);
@@ -43,7 +78,7 @@
 
         })
       })
-    </script>
+    </script> -->
     </head>
 <body>
     <nav class="navbar navbar-dark bg-dark">
@@ -76,43 +111,145 @@
       </ul>
     </div>
     </nav>
-    <div class="jumbotron" align="center">
-      <h1 class="display-4">歡迎來到資處公略成果展</h1>
+    <div class="jumbotron jumbotron-fluid" align="center">
+      <h1 class="display-4">多媒體設計作品成果展示</h1>
       <hr class="my-4">
-      <p class="lead" style="margin-left:50px">這裡展放的是資處科多媒體的作品</p> 
-      <!-- <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
     </div>
     <div class="container">
       <?php
         include_once('link.php');
         $sql = $db->query('select * from data');
-        $row = $sql->rowCount();
-        while($query = $sql->fetch(PDO::FETCH_ASSOC)){
-      ?>
-      <p>
-        <div class="card-deck">
-          <div class="card">
-          <a href="<?php echo $query['d_link']; ?>">            <img class="card-img-top" src="<?php if($query['d_class'] == "資三智"){
-              echo './UserImages/wisdom/' . $query['d_img'];
-            }else{
-              echo './UserImages/benevolence/' . $query['d_img'];
-            }  ?>" alt="Card image cap"></a>
-            <div class="card-body" align="center">
-              <h5 class="card-title">製作班級：<?php echo $query['d_class']; ?></h5>
-              <h4 class="card-title">影片名稱：<?php echo explode('.',$query['d_img'])[0]; ?></h4>
-              <h4 class="card-title"><?php echo $query['d_people']; ?></h4>
-              <a href="<?php echo $query['d_link']; ?>" class="btn btn-primary active" width= role="button" aria-pressed="true">影片連結</a>
-            </div>
-          </div>
-        </div>
-      </p>
-      <?php
-          
+        $Arr = [];
+        while($row = $sql->fetch(PDO::FETCH_ASSOC)){
+          array_push($Arr,$row['d_category']);
+        }
+        $Arr = array_unique($Arr);
+        foreach($Arr as $value){
         }
       ?>
+      <div id="mainDiv">
+         <?php
+            foreach($Arr as $value){
+         ?>
+              <a href="./#<?php echo $value ?>" class="ui-button"><?php echo $value; ?></a>
+         <?php
+            }
+         ?>
+      </div>
+      <p>
+          <div id="微電影">
+          <table>
+              <tbody>
+            <?php
+              $sql = $db->query('select * from data where d_category="微電影"');
+              $query = $sql->fetchAll();
+              for($i=0;$i<10;$i++){                       
+            ?>
+                  <tr>
+                    <td>
+                      <div class="card-deck">
+                        <div class="card">
+                        <img class="card-img-top" src="<?php if($query[$i]['d_class'] == "資三智"){
+                            echo './UserImages/wisdom/' . $query[$i]['d_img'];
+                          }else{
+                            echo './UserImages/benevolence/' . $query[$i]['d_img'];
+                          }  ?>" alt="Card image cap">
+                            <div class="card-body" align="center">
+                            <h4 class="card-title">影片名稱：<?php echo explode('.',$query[$i]['d_img'])[0]; ?> <a href="<?php echo $query[$i]['d_link']; ?>" class="btn btn-primary active" width= role="button" aria-pressed="true">影片連結</a></h4>
+                              <h5 class="card-title">班級：<?php echo $query[$i]['d_class']; ?></h5>                
+                              <h4 class="card-title"><?php echo $query[$i]['d_people']; ?></h4>
+                            </div>
+                        </div>
+                      </div>
+                    </td>
+                    <?php
+                      if($i+1<10){
+                    ?>
+                    <td>
+                      <div class="card-deck">
+                          <div class="card">
+                          <img class="card-img-top" src="<?php if($query[$i+1]['d_class'] == "資三智"){
+                              echo './UserImages/wisdom/' . $query[$i+1]['d_img'];
+                            }else{
+                              echo './UserImages/benevolence/' . $query[$i+1]['d_img'];
+                            }  ?>" alt="Card image cap">
+                              <div class="card-body" align="center">
+                              <h4 class="card-title">影片名稱：<?php echo explode('.',$query[$i+1]['d_img'])[0]; ?> <a href="<?php echo $query[$i+1]['d_link']; ?>" class="btn btn-primary active" width= role="button" aria-pressed="true">影片連結</a></h4>
+                                <h5 class="card-title">班級：<?php echo $query[$i+1]['d_class']; ?></h5>                
+                                <h4 class="card-title"><?php echo $query[$i+1]['d_people']; ?></h4>
+                              </div>
+                          </div>
+                      </div>
+                    </td>
+                    <?php
+                      }
+                    ?>
+                    <?php
+                      if($i+1<10){
+                    ?>
+                    <td>
+                      <div class="card-deck">
+                        <div class="card">
+                        <img class="card-img-top" src="<?php if($query[$i+2]['d_class'] == "資三智"){
+                            echo './UserImages/wisdom/' . $query[$i+2]['d_img'];
+                          }else{
+                            echo './UserImages/benevolence/' . $query[$i+2]['d_img'];
+                          }  ?>" alt="Card image cap">
+                            <div class="card-body" align="center">
+                            <h4 class="card-title">影片名稱：<?php echo explode('.',$query[$i+2]['d_img'])[0]; ?> <a href="<?php echo $query[$i+2]['d_link']; ?>" class="btn btn-primary active" width= role="button" aria-pressed="true">影片連結</a></h4>
+                              <h5 class="card-title">班級：<?php echo $query[$i+2]['d_class']; ?></h5>                
+                              <h4 class="card-title"><?php echo $query[$i+2]['d_people']; ?></h4>
+                            </div>
+                        </div>
+                      </div>
+                    </td>
+                    <?php
+                      }
+                    ?>
+                  </tr>
+                <?php
+                    $i+=2;
+                  }
+                ?>
+          </div>
+          </tbody>
+              </table>
+      </p>
+      <p>
+          <div id="直播行銷">
+            <?php
+              $sql = $db->query('select * from data where d_category="微電影"');
+              echo $sql->rowCount();                         
+            ?>
+          </div>
+      </p>
+      <p>
+          <div id="性別平等">
+            <?php
+              $sql = $db->query('select * from data where d_category="微電影"');
+              echo $sql->rowCount();                         
+            ?>
+          </div>
+      </p>
+      <p>
+          <div id="自我介少">
+            <?php
+              $sql = $db->query('select * from data where d_category="微電影"');
+              echo $sql->rowCount();                           
+            ?>
+          </div>
+      </p>
+      <p>
+          <div id="高中歲月">
+            <?php
+              $sql = $db->query('select * from data where d_category="微電影"');
+              echo $sql->rowCount();                           
+            ?>
+          </div>
+      </p>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -145,7 +282,7 @@
             </div>
           </form>
         </div>
-      </div>
+      </div> -->
     </div>
 </body>
 </html>
