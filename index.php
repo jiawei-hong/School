@@ -27,11 +27,12 @@
        }
        
        .display-4{
-         font-family:'標楷體';
+         font-family:'微軟正黑體';
+		 font-weight:600;
        }
 
        .card-title{
-         font-family:'標楷體';
+         font-family:'微軟正黑體';
          font-size:20px;
        }
 
@@ -47,7 +48,7 @@
        #mainDiv{
         display: flex;
         justify-content: space-evenly;
-        font-family:'標楷體';
+        font-family:'微軟正黑體	';
         font-size:25px;
        }
 
@@ -64,7 +65,7 @@
        span{
          display:flex;
          justify-content:center;
-         font-family:'標楷體';
+         font-family:'微軟正黑體';
          font-size:30px;
        }
     </style>
